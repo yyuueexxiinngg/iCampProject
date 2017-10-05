@@ -151,6 +151,14 @@ namespace iCampProject
 
                     MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
                     cmd.ExecuteNonQuery();
+
+                    cmdtext = "INSERT INTO bunk_camper (" +
+                        "`bunk_id`, `camper_name`) " +
+                        "VALUES ('" + camper_bunk.Text + "', '"+ camper_name.Text+"')";
+                    cmd = new MySqlCommand(cmdtext, conn);
+                    cmd.ExecuteNonQuery();
+
+
                 }
                 catch (MySqlException ex)
                 {

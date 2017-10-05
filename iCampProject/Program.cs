@@ -16,7 +16,7 @@ namespace iCampProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegisterActivities());
+            Application.Run(new Register());
         }
     }
 }
