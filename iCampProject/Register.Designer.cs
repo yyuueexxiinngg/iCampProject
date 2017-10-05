@@ -66,6 +66,8 @@
             this.newCamper = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.combo_select_camper = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_leave = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -73,6 +75,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dateTimePicker_leave);
+            this.groupBox1.Controls.Add(this.dateTimePicker_start);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
@@ -218,17 +222,19 @@
             // 
             // camper_leave_date
             // 
-            this.camper_leave_date.Location = new System.Drawing.Point(96, 132);
+            this.camper_leave_date.Location = new System.Drawing.Point(183, 132);
             this.camper_leave_date.Name = "camper_leave_date";
-            this.camper_leave_date.Size = new System.Drawing.Size(146, 21);
+            this.camper_leave_date.Size = new System.Drawing.Size(59, 21);
             this.camper_leave_date.TabIndex = 5;
+            this.camper_leave_date.Visible = false;
             // 
             // camper_start_date
             // 
-            this.camper_start_date.Location = new System.Drawing.Point(96, 105);
+            this.camper_start_date.Location = new System.Drawing.Point(183, 105);
             this.camper_start_date.Name = "camper_start_date";
-            this.camper_start_date.Size = new System.Drawing.Size(146, 21);
+            this.camper_start_date.Size = new System.Drawing.Size(59, 21);
             this.camper_start_date.TabIndex = 4;
+            this.camper_start_date.Visible = false;
             // 
             // camper_nationality
             // 
@@ -415,6 +421,20 @@
             this.combo_select_camper.TabIndex = 30;
             this.combo_select_camper.SelectedIndexChanged += new System.EventHandler(this.combo_select_camper_SelectedIndexChanged);
             // 
+            // dateTimePicker_start
+            // 
+            this.dateTimePicker_start.Location = new System.Drawing.Point(96, 104);
+            this.dateTimePicker_start.Name = "dateTimePicker_start";
+            this.dateTimePicker_start.Size = new System.Drawing.Size(146, 21);
+            this.dateTimePicker_start.TabIndex = 20;
+            // 
+            // dateTimePicker_leave
+            // 
+            this.dateTimePicker_leave.Location = new System.Drawing.Point(96, 135);
+            this.dateTimePicker_leave.Name = "dateTimePicker_leave";
+            this.dateTimePicker_leave.Size = new System.Drawing.Size(146, 21);
+            this.dateTimePicker_leave.TabIndex = 21;
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -479,5 +499,7 @@
         private System.Windows.Forms.Button newCamper;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.ComboBox combo_select_camper;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_leave;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_start;
     }
 }

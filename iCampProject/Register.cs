@@ -38,6 +38,8 @@ namespace iCampProject
         private void newCamper_Click(object sender, EventArgs e)
         {
             combo_select_camper.SelectedIndex = -1;
+            dateTimePicker_start.Value = DateTime.Now;
+            dateTimePicker_leave.Value = DateTime.Now;
             ClearText(this);
         }
 
@@ -91,8 +93,10 @@ namespace iCampProject
                         camper_nationality.Text = reader.GetString(5);
                         camper_restriction.Text = reader.IsDBNull(6) ? "" : reader.GetString(6);
                         camper_medications.Text = reader.IsDBNull(7) ? "" : reader.GetString(7);
-                        camper_start_date.Text = reader.GetString(8);
-                        camper_leave_date.Text = reader.GetString(9);
+                        dateTimePicker_start.Value = DateTime.Parse(reader.GetString(8));
+                        //camper_start_date.Text = reader.GetString(8);
+                        dateTimePicker_leave.Value = DateTime.Parse(reader.GetString(9));
+                        //camper_leave_date.Text = reader.GetString(9);
                         camper_transportation.Text = reader.GetString(10);
                         camper_parent1_name.Text = reader.GetString(11);
                         camper_parent1_phone.Text = reader.GetString(12);
@@ -135,8 +139,8 @@ namespace iCampProject
                         camper_nationality.Text + "', '" +
                         camper_restriction.Text + "', '" +
                         camper_medications.Text + "', '" +
-                        camper_start_date.Text + "', '" +
-                        camper_leave_date.Text + "', '" +
+                        dateTimePicker_start.Value.ToString() + "', '" +
+                        dateTimePicker_leave.Value.ToString() + "', '" +
                         camper_transportation.Text + "', '" +
                         camper_parent1_name.Text + "', '" +
                         camper_parent1_phone.Text + "', '" +
@@ -175,8 +179,8 @@ namespace iCampProject
                         "`nationality`='" + camper_nationality.Text + "', " +
                         "`restriction`='" + camper_restriction.Text + "', " +
                         "`medications`='" + camper_medications.Text + "', " +
-                        "`start_date`='" + camper_start_date.Text + "', " +
-                        "`leave_date`='" + camper_leave_date.Text + "', " +
+                        "`start_date`='" + dateTimePicker_start.Value.ToString() + "', " +
+                        "`leave_date`='" + dateTimePicker_leave.Value.ToString() + "', " +
                         "`transportation`='" + camper_transportation.Text + "', " +
                         "`parent1_name`='" + camper_parent1_name.Text + "', " +
                         "`parent1_phone`='" + camper_parent1_phone.Text + "', " +
@@ -202,6 +206,8 @@ namespace iCampProject
                 }
             }
             ClearText(this);
+            dateTimePicker_start.Value = DateTime.Now;
+            dateTimePicker_leave.Value = DateTime.Now;
             combo_select_camper.SelectedIndex = -1;
             combo_select_camper.Items.Clear();
             Register_Load(sender, e);

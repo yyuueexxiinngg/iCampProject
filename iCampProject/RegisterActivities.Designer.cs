@@ -30,8 +30,8 @@
         {
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.list_activity1 = new System.Windows.Forms.ListBox();
             this.btn_delete_activity1 = new System.Windows.Forms.Button();
+            this.list_activity1 = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_delete_activity2 = new System.Windows.Forms.Button();
             this.list_activity2 = new System.Windows.Forms.ListBox();
@@ -46,8 +46,8 @@
             this.list_activity5 = new System.Windows.Forms.ListBox();
             this.btn_add_activity = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,6 +62,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(308, 21);
             this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // groupBox1
             // 
@@ -74,15 +75,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Activity 1";
             // 
-            // list_activity1
-            // 
-            this.list_activity1.FormattingEnabled = true;
-            this.list_activity1.ItemHeight = 12;
-            this.list_activity1.Location = new System.Drawing.Point(6, 20);
-            this.list_activity1.Name = "list_activity1";
-            this.list_activity1.Size = new System.Drawing.Size(196, 148);
-            this.list_activity1.TabIndex = 0;
-            // 
             // btn_delete_activity1
             // 
             this.btn_delete_activity1.Location = new System.Drawing.Point(44, 174);
@@ -91,6 +83,15 @@
             this.btn_delete_activity1.TabIndex = 1;
             this.btn_delete_activity1.Text = "Delete";
             this.btn_delete_activity1.UseVisualStyleBackColor = true;
+            // 
+            // list_activity1
+            // 
+            this.list_activity1.FormattingEnabled = true;
+            this.list_activity1.ItemHeight = 12;
+            this.list_activity1.Location = new System.Drawing.Point(6, 20);
+            this.list_activity1.Name = "list_activity1";
+            this.list_activity1.Size = new System.Drawing.Size(196, 148);
+            this.list_activity1.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -229,6 +230,13 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Add Activity";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(139, 23);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(180, 21);
+            this.textBox1.TabIndex = 5;
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -236,13 +244,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(139, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 21);
-            this.textBox1.TabIndex = 5;
             // 
             // RegisterActivities
             // 
@@ -258,6 +259,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "RegisterActivities";
             this.Text = "Register Activities";
+            this.Load += new System.EventHandler(this.RegisterActivities_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
