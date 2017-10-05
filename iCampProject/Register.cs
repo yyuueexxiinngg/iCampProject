@@ -200,6 +200,10 @@ namespace iCampProject
 
                     MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
                     cmd.ExecuteNonQuery();
+                    cmdtext = "UPDATE bunk_camper SET bunk_id="+camper_bunk.Text+" WHERE camper_name='"+ combo_select_camper.SelectedItem.ToString()+"'";
+                    cmd = new MySqlCommand(cmdtext, conn);
+                    cmd.ExecuteNonQuery();
+
                 }
                 catch (MySqlException ex)
                 {

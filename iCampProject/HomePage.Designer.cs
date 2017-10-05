@@ -29,38 +29,30 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_register = new System.Windows.Forms.Button();
-            this.btn_choose_activeties = new System.Windows.Forms.Button();
             this.btn_register_activities = new System.Windows.Forms.Button();
-            this.btn_export_signup_sheet = new System.Windows.Forms.Button();
-            this.btn_export_detail = new System.Windows.Forms.Button();
-            this.btn_new_session = new System.Windows.Forms.Button();
+            this.btn_choose_activeties = new System.Windows.Forms.Button();
+            this.btn_register = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btn_export_detail = new System.Windows.Forms.Button();
+            this.btn_export_signup_sheet = new System.Windows.Forms.Button();
+            this.btn_new_session = new System.Windows.Forms.Button();
             this.combo_session = new System.Windows.Forms.ComboBox();
-            this.menuStrip1.SuspendLayout();
+            this.label2 = new System.Windows.Forms.Label();
+            this.combo_bunk = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(766, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(766, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
-            this.fileToolStripMenuItem.Text = "File";
             // 
             // label1
             // 
@@ -84,27 +76,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Menu";
             // 
-            // groupBox2
+            // btn_register_activities
             // 
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
-            this.groupBox2.Controls.Add(this.btn_export_detail);
-            this.groupBox2.Controls.Add(this.btn_export_signup_sheet);
-            this.groupBox2.Location = new System.Drawing.Point(361, 156);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(323, 261);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Export";
-            // 
-            // btn_register
-            // 
-            this.btn_register.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_register.Location = new System.Drawing.Point(27, 30);
-            this.btn_register.Name = "btn_register";
-            this.btn_register.Size = new System.Drawing.Size(269, 49);
-            this.btn_register.TabIndex = 0;
-            this.btn_register.Text = "Register/Edit";
-            this.btn_register.UseVisualStyleBackColor = true;
+            this.btn_register_activities.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_register_activities.Location = new System.Drawing.Point(27, 182);
+            this.btn_register_activities.Name = "btn_register_activities";
+            this.btn_register_activities.Size = new System.Drawing.Size(269, 49);
+            this.btn_register_activities.TabIndex = 2;
+            this.btn_register_activities.Text = "Register Activities ";
+            this.btn_register_activities.UseVisualStyleBackColor = true;
+            this.btn_register_activities.Click += new System.EventHandler(this.btn_register_activities_Click);
             // 
             // btn_choose_activeties
             // 
@@ -115,26 +96,39 @@
             this.btn_choose_activeties.TabIndex = 1;
             this.btn_choose_activeties.Text = "Choose Activities";
             this.btn_choose_activeties.UseVisualStyleBackColor = true;
+            this.btn_choose_activeties.Click += new System.EventHandler(this.btn_choose_activeties_Click);
             // 
-            // btn_register_activities
+            // btn_register
             // 
-            this.btn_register_activities.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_register_activities.Location = new System.Drawing.Point(27, 182);
-            this.btn_register_activities.Name = "btn_register_activities";
-            this.btn_register_activities.Size = new System.Drawing.Size(269, 49);
-            this.btn_register_activities.TabIndex = 2;
-            this.btn_register_activities.Text = "Register Activities ";
-            this.btn_register_activities.UseVisualStyleBackColor = true;
+            this.btn_register.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_register.Location = new System.Drawing.Point(27, 30);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(269, 49);
+            this.btn_register.TabIndex = 0;
+            this.btn_register.Text = "Register/Edit";
+            this.btn_register.UseVisualStyleBackColor = true;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
-            // btn_export_signup_sheet
+            // groupBox2
             // 
-            this.btn_export_signup_sheet.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_export_signup_sheet.Location = new System.Drawing.Point(28, 106);
-            this.btn_export_signup_sheet.Name = "btn_export_signup_sheet";
-            this.btn_export_signup_sheet.Size = new System.Drawing.Size(269, 49);
-            this.btn_export_signup_sheet.TabIndex = 3;
-            this.btn_export_signup_sheet.Text = "Signup Sheet";
-            this.btn_export_signup_sheet.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.combo_bunk);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.btn_export_detail);
+            this.groupBox2.Controls.Add(this.btn_export_signup_sheet);
+            this.groupBox2.Location = new System.Drawing.Point(361, 156);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(323, 261);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Export";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(154, 38);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(143, 21);
+            this.dateTimePicker1.TabIndex = 5;
             // 
             // btn_export_detail
             // 
@@ -145,6 +139,18 @@
             this.btn_export_detail.TabIndex = 4;
             this.btn_export_detail.Text = "Detail";
             this.btn_export_detail.UseVisualStyleBackColor = true;
+            this.btn_export_detail.Click += new System.EventHandler(this.btn_export_detail_Click);
+            // 
+            // btn_export_signup_sheet
+            // 
+            this.btn_export_signup_sheet.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_export_signup_sheet.Location = new System.Drawing.Point(28, 106);
+            this.btn_export_signup_sheet.Name = "btn_export_signup_sheet";
+            this.btn_export_signup_sheet.Size = new System.Drawing.Size(269, 49);
+            this.btn_export_signup_sheet.TabIndex = 3;
+            this.btn_export_signup_sheet.Text = "Signup Sheet";
+            this.btn_export_signup_sheet.UseVisualStyleBackColor = true;
+            this.btn_export_signup_sheet.Click += new System.EventHandler(this.btn_export_signup_sheet_Click);
             // 
             // btn_new_session
             // 
@@ -155,13 +161,6 @@
             this.btn_new_session.Text = "New";
             this.btn_new_session.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(28, 41);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(269, 21);
-            this.dateTimePicker1.TabIndex = 5;
-            // 
             // combo_session
             // 
             this.combo_session.FormattingEnabled = true;
@@ -169,6 +168,23 @@
             this.combo_session.Name = "combo_session";
             this.combo_session.Size = new System.Drawing.Size(228, 20);
             this.combo_session.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Bunk";
+            // 
+            // combo_bunk
+            // 
+            this.combo_bunk.FormattingEnabled = true;
+            this.combo_bunk.Location = new System.Drawing.Point(42, 38);
+            this.combo_bunk.Name = "combo_bunk";
+            this.combo_bunk.Size = new System.Drawing.Size(92, 20);
+            this.combo_bunk.TabIndex = 7;
             // 
             // HomePage
             // 
@@ -185,10 +201,9 @@
             this.Name = "HomePage";
             this.Text = "Home Page";
             this.Load += new System.EventHandler(this.HomePage_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,7 +212,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_register_activities;
@@ -209,6 +223,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btn_new_session;
         private System.Windows.Forms.ComboBox combo_session;
+        private System.Windows.Forms.ComboBox combo_bunk;
+        private System.Windows.Forms.Label label2;
     }
 }
 

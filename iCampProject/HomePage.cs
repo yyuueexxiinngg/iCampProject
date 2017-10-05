@@ -6,12 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace iCampProject
 {
     public partial class HomePage : Form
     {
+
+        string cs = @"server=localhost;userid=root;password='';database=icamp";
+        MySqlConnection conn = null;
+        MySqlDataReader reader = null;
+
         public HomePage()
         {
             InitializeComponent();
@@ -19,7 +26,187 @@ namespace iCampProject
 
         private void HomePage_Load(object sender, EventArgs e)
         {
+            combo_bunk.SelectedIndex = -1;
+            combo_bunk.Items.Clear();
+            try
+            {
+                conn = new MySqlConnection(cs);
+                conn.Open();
 
+                String cmdText = "SELECT DISTINCT bunk_id FROM bunk_camper_selected ORDER BY bunk_id";
+                MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    combo_bunk.Items.Add(reader.GetString(0));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.ToString());
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void btn_register_Click(object sender, EventArgs e)
+        {
+            Register register = new Register();
+            this.Enabled = false;
+            register.ShowDialog();
+            this.Enabled = true;
+        }
+
+        private void btn_choose_activeties_Click(object sender, EventArgs e)
+        {
+            SelectActivities selectActivities = new SelectActivities();
+            this.Enabled = false;
+            selectActivities.ShowDialog();
+            this.Enabled = true;
+            HomePage_Load(sender, e);
+        }
+
+        private void btn_register_activities_Click(object sender, EventArgs e)
+        {
+            RegisterActivities registerActivities = new RegisterActivities();
+            this.Enabled = false;
+            registerActivities.ShowDialog();
+            this.Enabled = true;
+        }
+
+        private void btn_export_detail_Click(object sender, EventArgs e)
+        {
+            if (combo_bunk.SelectedIndex != -1)
+            {
+                try
+                {
+                    conn = new MySqlConnection(cs);
+                    conn.Open();
+                    String out_put = "Name,Activity1,Activity2,Activity3,Activity4,Activity5\n";
+                    String cmdText = "SELECT * FROM bunk_camper_selected WHERE bunk_id='" + combo_bunk.SelectedItem.ToString() + "' AND date='" + dateTimePicker1.Value.ToShortDateString() + "'";
+                    MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        out_put += reader.GetString(2)+","+ reader.GetString(5)+ "," + reader.GetString(6)+ "," + reader.GetString(7) + "," + reader.GetString(8)+ "," + reader.GetString(9)+"\n";
+                    }
+
+                    FileStream fs = new FileStream("..\\..\\..\\Detail Bunk" + combo_bunk.SelectedItem.ToString() + ".csv", FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write(out_put);
+                    sw.Flush();
+                    sw.Close();
+                    fs.Close();
+                    MessageBox.Show("Export succefully");
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        private void btn_export_signup_sheet_Click(object sender, EventArgs e)
+        {
+            if (combo_bunk.SelectedIndex != -1)
+            {
+                try
+                {
+                    conn = new MySqlConnection(cs);
+                    conn.Open();
+                    String out_put = "Activities 1 9:00 am - 10:15 am\nAvtivity,";
+                    String act1 = "";
+                    String act2 = "";
+                    String act3 = "";
+                    String act4 = "";
+                    String act5 = "";
+                    String camper = "";
+                    String cmdText = "SELECT * FROM acitvities_date WHERE date='" + dateTimePicker1.Value.ToShortDateString() + "'";
+                    MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (!reader.IsDBNull(2))
+                        {
+                            act1 += reader.GetString(2)+",";
+                        }
+
+                        if (!reader.IsDBNull(3))
+                        {
+                            act2 += reader.GetString(3) + ",";
+                        }
+
+                        if (!reader.IsDBNull(4))
+                        {
+                            act3 += reader.GetString(4) + ",";
+                        }
+
+                        if (!reader.IsDBNull(5))
+                        {
+                            act4 += reader.GetString(5) + ",";
+                        }
+
+                        if (!reader.IsDBNull(6))
+                        {
+                            act5 += reader.GetString(6) + ",";
+                        }
+                    }
+                    conn.Close();
+                    out_put += act1 + "\n";
+                    cmdText = "SELECT * FROM bunk_camper WHERE bunk_id='" + combo_bunk.SelectedItem.ToString() + "'";
+
+                    conn = new MySqlConnection(cs);
+                    conn.Open();
+                    cmd = new MySqlCommand(cmdText, conn);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                            camper += reader.GetString(3) + "\n";
+                    }
+                    conn.Close();
+
+
+
+                    out_put += camper + "\n\nActivities 2 10:45 am - 12:00 am\nAvtivity," + act2 + "\n";
+                    out_put += camper + "\n\nActivities 3 01:00 pm - 02:15 pm\nAvtivity," + act3 + "\n";
+                    out_put += camper + "\n\nActivities 4 02:45 pm - 04:00 pm\nAvtivity," + act4 + "\n";
+                    out_put += camper + "\n\nActivities 5 04:15 pm - 05:30 pm\nAvtivity," + act5 + "\n"+camper;
+
+                    FileStream fs = new FileStream("..\\..\\..\\Sign Up Sheet Bunk"+ combo_bunk.SelectedItem.ToString()+".csv", FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write(out_put);
+                    sw.Flush();
+                    sw.Close();
+                    fs.Close();
+
+                    MessageBox.Show("Export succefully");
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
         }
     }
 }
