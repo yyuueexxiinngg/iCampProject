@@ -46,8 +46,8 @@
             this.list_activity5 = new System.Windows.Forms.ListBox();
             this.btn_add_activity = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox_activity = new System.Windows.Forms.TextBox();
+            this.combo_add = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,8 +81,10 @@
             this.btn_delete_activity1.Name = "btn_delete_activity1";
             this.btn_delete_activity1.Size = new System.Drawing.Size(108, 27);
             this.btn_delete_activity1.TabIndex = 1;
+            this.btn_delete_activity1.Tag = "1";
             this.btn_delete_activity1.Text = "Delete";
             this.btn_delete_activity1.UseVisualStyleBackColor = true;
+            this.btn_delete_activity1.Click += new System.EventHandler(this.btn_delete_activity_Click);
             // 
             // list_activity1
             // 
@@ -110,8 +112,10 @@
             this.btn_delete_activity2.Name = "btn_delete_activity2";
             this.btn_delete_activity2.Size = new System.Drawing.Size(108, 27);
             this.btn_delete_activity2.TabIndex = 1;
+            this.btn_delete_activity2.Tag = "2";
             this.btn_delete_activity2.Text = "Delete";
             this.btn_delete_activity2.UseVisualStyleBackColor = true;
+            this.btn_delete_activity2.Click += new System.EventHandler(this.btn_delete_activity_Click);
             // 
             // list_activity2
             // 
@@ -139,8 +143,10 @@
             this.btn_delete_activity3.Name = "btn_delete_activity3";
             this.btn_delete_activity3.Size = new System.Drawing.Size(108, 27);
             this.btn_delete_activity3.TabIndex = 1;
+            this.btn_delete_activity3.Tag = "3";
             this.btn_delete_activity3.Text = "Delete";
             this.btn_delete_activity3.UseVisualStyleBackColor = true;
+            this.btn_delete_activity3.Click += new System.EventHandler(this.btn_delete_activity_Click);
             // 
             // list_activity3
             // 
@@ -168,8 +174,10 @@
             this.btn_delete_activity4.Name = "btn_delete_activity4";
             this.btn_delete_activity4.Size = new System.Drawing.Size(108, 27);
             this.btn_delete_activity4.TabIndex = 1;
+            this.btn_delete_activity4.Tag = "4";
             this.btn_delete_activity4.Text = "Delete";
             this.btn_delete_activity4.UseVisualStyleBackColor = true;
+            this.btn_delete_activity4.Click += new System.EventHandler(this.btn_delete_activity_Click);
             // 
             // list_activity4
             // 
@@ -197,8 +205,10 @@
             this.btn_delete_activity5.Name = "btn_delete_activity5";
             this.btn_delete_activity5.Size = new System.Drawing.Size(108, 27);
             this.btn_delete_activity5.TabIndex = 1;
+            this.btn_delete_activity5.Tag = "5";
             this.btn_delete_activity5.Text = "Delete";
             this.btn_delete_activity5.UseVisualStyleBackColor = true;
+            this.btn_delete_activity5.Click += new System.EventHandler(this.btn_delete_activity_Click);
             // 
             // list_activity5
             // 
@@ -217,11 +227,12 @@
             this.btn_add_activity.TabIndex = 3;
             this.btn_add_activity.Text = "Add";
             this.btn_add_activity.UseVisualStyleBackColor = true;
+            this.btn_add_activity.Click += new System.EventHandler(this.btn_add_activity_Click);
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.textBox1);
-            this.groupBox6.Controls.Add(this.comboBox1);
+            this.groupBox6.Controls.Add(this.textBox_activity);
+            this.groupBox6.Controls.Add(this.combo_add);
             this.groupBox6.Controls.Add(this.btn_add_activity);
             this.groupBox6.Location = new System.Drawing.Point(354, 284);
             this.groupBox6.Name = "groupBox6";
@@ -230,20 +241,20 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Add Activity";
             // 
-            // textBox1
+            // textBox_activity
             // 
-            this.textBox1.Location = new System.Drawing.Point(139, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 21);
-            this.textBox1.TabIndex = 5;
+            this.textBox_activity.Location = new System.Drawing.Point(139, 23);
+            this.textBox_activity.Name = "textBox_activity";
+            this.textBox_activity.Size = new System.Drawing.Size(180, 21);
+            this.textBox_activity.TabIndex = 5;
             // 
-            // comboBox1
+            // combo_add
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 4;
+            this.combo_add.FormattingEnabled = true;
+            this.combo_add.Location = new System.Drawing.Point(12, 23);
+            this.combo_add.Name = "combo_add";
+            this.combo_add.Size = new System.Drawing.Size(121, 20);
+            this.combo_add.TabIndex = 4;
             // 
             // RegisterActivities
             // 
@@ -291,7 +302,7 @@
         private System.Windows.Forms.ListBox list_activity5;
         private System.Windows.Forms.Button btn_add_activity;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBox_activity;
+        private System.Windows.Forms.ComboBox combo_add;
     }
 }
