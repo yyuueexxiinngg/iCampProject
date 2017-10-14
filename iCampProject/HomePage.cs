@@ -57,26 +57,26 @@ namespace iCampProject
         private void btn_register_Click(object sender, EventArgs e)
         {
             Register register = new Register();
-            this.Enabled = false;
+            //this.Enabled = false;
             register.ShowDialog();
-            this.Enabled = true;
+            //this.Enabled = true;
         }
 
         private void btn_choose_activeties_Click(object sender, EventArgs e)
         {
             SelectActivities selectActivities = new SelectActivities();
-            this.Enabled = false;
+            //this.Enabled = false;
             selectActivities.ShowDialog();
-            this.Enabled = true;
+            //this.Enabled = true;
             HomePage_Load(sender, e);
         }
 
         private void btn_register_activities_Click(object sender, EventArgs e)
         {
             RegisterActivities registerActivities = new RegisterActivities();
-            this.Enabled = false;
+            //this.Enabled = false;
             registerActivities.ShowDialog();
-            this.Enabled = true;
+            //this.Enabled = true;
         }
 
         private void btn_export_detail_Click(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace iCampProject
                     out_put += act1 + "\n";
                     cmdText = "SELECT * FROM bunk_camper WHERE bunk_id='" + combo_bunk.SelectedItem.ToString() + "'";
 
-                    conn = new MySqlConnection(cs);
+                    //conn = new MySqlConnection(cs);
                     conn.Open();
                     cmd = new MySqlCommand(cmdText, conn);
                     reader = cmd.ExecuteReader();
@@ -176,7 +176,7 @@ namespace iCampProject
                     {
                             camper += reader.GetString(3) + "\n";
                     }
-                    conn.Close();
+                    //conn.Close();
 
 
 
@@ -207,6 +207,11 @@ namespace iCampProject
                     }
                 }
             }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

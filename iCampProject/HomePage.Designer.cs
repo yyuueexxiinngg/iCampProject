@@ -35,13 +35,13 @@
             this.btn_choose_activeties = new System.Windows.Forms.Button();
             this.btn_register = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.combo_bunk = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btn_export_detail = new System.Windows.Forms.Button();
             this.btn_export_signup_sheet = new System.Windows.Forms.Button();
             this.btn_new_session = new System.Windows.Forms.Button();
             this.combo_session = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.combo_bunk = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(766, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // label1
             // 
@@ -123,6 +124,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Export";
             // 
+            // combo_bunk
+            // 
+            this.combo_bunk.FormattingEnabled = true;
+            this.combo_bunk.Location = new System.Drawing.Point(42, 38);
+            this.combo_bunk.Name = "combo_bunk";
+            this.combo_bunk.Size = new System.Drawing.Size(92, 20);
+            this.combo_bunk.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Bunk";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(154, 38);
@@ -168,23 +186,6 @@
             this.combo_session.Name = "combo_session";
             this.combo_session.Size = new System.Drawing.Size(228, 20);
             this.combo_session.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Bunk";
-            // 
-            // combo_bunk
-            // 
-            this.combo_bunk.FormattingEnabled = true;
-            this.combo_bunk.Location = new System.Drawing.Point(42, 38);
-            this.combo_bunk.Name = "combo_bunk";
-            this.combo_bunk.Size = new System.Drawing.Size(92, 20);
-            this.combo_bunk.TabIndex = 7;
             // 
             // HomePage
             // 
