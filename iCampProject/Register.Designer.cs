@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker_leave = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,8 +68,6 @@
             this.newCamper = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.combo_select_camper = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_leave = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -104,14 +104,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CamperInfo";
             // 
+            // dateTimePicker_leave
+            // 
+            this.dateTimePicker_leave.Location = new System.Drawing.Point(96, 135);
+            this.dateTimePicker_leave.Name = "dateTimePicker_leave";
+            this.dateTimePicker_leave.Size = new System.Drawing.Size(146, 21);
+            this.dateTimePicker_leave.TabIndex = 21;
+            // 
+            // dateTimePicker_start
+            // 
+            this.dateTimePicker_start.Location = new System.Drawing.Point(96, 104);
+            this.dateTimePicker_start.Name = "dateTimePicker_start";
+            this.dateTimePicker_start.Size = new System.Drawing.Size(146, 21);
+            this.dateTimePicker_start.TabIndex = 20;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(263, 135);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 12);
+            this.label6.Size = new System.Drawing.Size(95, 12);
             this.label6.TabIndex = 19;
-            this.label6.Text = "Transportation";
+            this.label6.Text = "Transportation*";
             // 
             // label7
             // 
@@ -136,9 +150,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(323, 54);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 12);
+            this.label9.Size = new System.Drawing.Size(29, 12);
             this.label9.TabIndex = 16;
-            this.label9.Text = "Age";
+            this.label9.Text = "Age*";
             // 
             // camper_transportation
             // 
@@ -189,36 +203,36 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 141);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.Size = new System.Drawing.Size(71, 12);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Leave Date";
+            this.label5.Text = "Leave Date*";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(19, 108);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.Size = new System.Drawing.Size(71, 12);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Start Date";
+            this.label4.Text = "Start Date*";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(19, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
+            this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Nationality";
+            this.label3.Text = "Nationality*";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(61, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Bunk";
+            this.label2.Text = "Bunk*";
             // 
             // camper_leave_date
             // 
@@ -262,9 +276,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(61, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
+            this.label1.Text = "Name*";
             // 
             // groupBox2
             // 
@@ -309,9 +323,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(9, 60);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 12);
+            this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 22;
-            this.label12.Text = "Phone No.";
+            this.label12.Text = "Phone No.*";
             // 
             // camper_parent1_name
             // 
@@ -325,9 +339,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(39, 33);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 12);
+            this.label11.Size = new System.Drawing.Size(35, 12);
             this.label11.TabIndex = 20;
-            this.label11.Text = "Name";
+            this.label11.Text = "Name*";
             // 
             // groupBox3
             // 
@@ -420,20 +434,6 @@
             this.combo_select_camper.Size = new System.Drawing.Size(202, 20);
             this.combo_select_camper.TabIndex = 30;
             this.combo_select_camper.SelectedIndexChanged += new System.EventHandler(this.combo_select_camper_SelectedIndexChanged);
-            // 
-            // dateTimePicker_start
-            // 
-            this.dateTimePicker_start.Location = new System.Drawing.Point(96, 104);
-            this.dateTimePicker_start.Name = "dateTimePicker_start";
-            this.dateTimePicker_start.Size = new System.Drawing.Size(146, 21);
-            this.dateTimePicker_start.TabIndex = 20;
-            // 
-            // dateTimePicker_leave
-            // 
-            this.dateTimePicker_leave.Location = new System.Drawing.Point(96, 135);
-            this.dateTimePicker_leave.Name = "dateTimePicker_leave";
-            this.dateTimePicker_leave.Size = new System.Drawing.Size(146, 21);
-            this.dateTimePicker_leave.TabIndex = 21;
             // 
             // Register
             // 

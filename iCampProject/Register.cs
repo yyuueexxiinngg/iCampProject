@@ -125,105 +125,126 @@ namespace iCampProject
 
             if (combo_select_camper.SelectedIndex == -1)
             {
-                try
+                if (camper_name.Text != "" && camper_bunk.Text != "" && camper_age.Text != "" && camper_nationality.Text != "" && camper_transportation.Text != "" && camper_parent1_name.Text != "" && camper_parent1_phone.Text != "")
                 {
-                    conn = new MySqlConnection(cs);
-                    conn.Open();
-                    String cmdtext = "INSERT INTO camper_info (" +
-                        "`name`, `preferred_name`, `bunk`, `age`, `nationality`, `restriction`, `medications`, `start_date`, `leave_date`, `transportation`, `parent1_name`, `parent1_phone`, `parent1_email`, `parent2_name`, `parent2_phone`, `parent2_email`) " +
-                        "VALUES ('" +
-                        camper_name.Text + "', '" +
-                        camper_preferred_name.Text + "', '" +
-                        camper_bunk.Text + "', '" +
-                        camper_age.Text + "', '" +
-                        camper_nationality.Text + "', '" +
-                        camper_restriction.Text + "', '" +
-                        camper_medications.Text + "', '" +
-                        dateTimePicker_start.Value.ToString() + "', '" +
-                        dateTimePicker_leave.Value.ToString() + "', '" +
-                        camper_transportation.Text + "', '" +
-                        camper_parent1_name.Text + "', '" +
-                        camper_parent1_phone.Text + "', '" +
-                        camper_parent1_email.Text + "', '" +
-                        camper_parent2_name.Text + "', '" +
-                        camper_parent2_phone.Text + "', '" +
-                        camper_parent2_email.Text + "')";
-
-                    MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
-                    cmd.ExecuteNonQuery();
-
-                    cmdtext = "INSERT INTO bunk_camper (" +
-                        "`bunk_id`, `camper_name`) " +
-                        "VALUES ('" + camper_bunk.Text + "', '"+ camper_name.Text+"')";
-                    cmd = new MySqlCommand(cmdtext, conn);
-                    cmd.ExecuteNonQuery();
-
-
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.ToString());
-                }
-                finally
-                {
-                    if (conn != null)
+                    try
                     {
-                        conn.Close();
+                        conn = new MySqlConnection(cs);
+                        conn.Open();
+                        String cmdtext = "INSERT INTO camper_info (" +
+                            "`name`, `preferred_name`, `bunk`, `age`, `nationality`, `restriction`, `medications`, `start_date`, `leave_date`, `transportation`, `parent1_name`, `parent1_phone`, `parent1_email`, `parent2_name`, `parent2_phone`, `parent2_email`) " +
+                            "VALUES ('" +
+                            camper_name.Text + "', '" +
+                            camper_preferred_name.Text + "', '" +
+                            camper_bunk.Text + "', '" +
+                            camper_age.Text + "', '" +
+                            camper_nationality.Text + "', '" +
+                            camper_restriction.Text + "', '" +
+                            camper_medications.Text + "', '" +
+                            dateTimePicker_start.Value.ToString() + "', '" +
+                            dateTimePicker_leave.Value.ToString() + "', '" +
+                            camper_transportation.Text + "', '" +
+                            camper_parent1_name.Text + "', '" +
+                            camper_parent1_phone.Text + "', '" +
+                            camper_parent1_email.Text + "', '" +
+                            camper_parent2_name.Text + "', '" +
+                            camper_parent2_phone.Text + "', '" +
+                            camper_parent2_email.Text + "')";
+
+                        MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
+                        cmd.ExecuteNonQuery();
+
+                        cmdtext = "INSERT INTO bunk_camper (" +
+                            "`bunk_id`, `camper_name`) " +
+                            "VALUES ('" + camper_bunk.Text + "', '" + camper_name.Text + "')";
+                        cmd = new MySqlCommand(cmdtext, conn);
+                        cmd.ExecuteNonQuery();
+
+
                     }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.ToString());
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                        {
+                            conn.Close();
+                        }
+                    }
+                    ClearText(this);
+                    dateTimePicker_start.Value = DateTime.Now;
+                    dateTimePicker_leave.Value = DateTime.Now;
+                    combo_select_camper.SelectedIndex = -1;
+                    combo_select_camper.Items.Clear();
+                    Register_Load(sender, e);
+                    MessageBox.Show("Changes saved successfully!");
                 }
+                else {
+                    MessageBox.Show("Plese make sure text box with '*' are not null!");
+                }
+
             }
             else
             {
-                try
+                if (camper_name.Text != "" && camper_bunk.Text != "" && camper_age.Text != "" && camper_nationality.Text != "" && camper_transportation.Text != "" && camper_parent1_name.Text != "" && camper_parent1_phone.Text != "")
                 {
-                    conn = new MySqlConnection(cs);
-                    conn.Open();
-
-                    String cmdtext = "UPDATE camper_info SET " +
-                        "`name`='" + camper_name.Text + "', " +
-                        "`preferred_name`='" + camper_preferred_name.Text + "', " +
-                        "`bunk`='" + camper_bunk.Text + "', " +
-                        "`age`='" + camper_age.Text + "', " +
-                        "`nationality`='" + camper_nationality.Text + "', " +
-                        "`restriction`='" + camper_restriction.Text + "', " +
-                        "`medications`='" + camper_medications.Text + "', " +
-                        "`start_date`='" + dateTimePicker_start.Value.ToString() + "', " +
-                        "`leave_date`='" + dateTimePicker_leave.Value.ToString() + "', " +
-                        "`transportation`='" + camper_transportation.Text + "', " +
-                        "`parent1_name`='" + camper_parent1_name.Text + "', " +
-                        "`parent1_phone`='" + camper_parent1_phone.Text + "', " +
-                        "`parent1_email`='" + camper_parent1_email.Text + "', " +
-                        "`parent2_name`='" + camper_parent2_name.Text + "', " +
-                        "`parent2_phone`='" + camper_parent2_phone.Text + "', " +
-                        "`parent2_email`='" + camper_parent2_email.Text + "' " +
-                        "WHERE `name`='" + combo_select_camper.SelectedItem.ToString() + "'";
-
-                    MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
-                    cmd.ExecuteNonQuery();
-                    cmdtext = "UPDATE bunk_camper SET bunk_id="+camper_bunk.Text+" WHERE camper_name='"+ combo_select_camper.SelectedItem.ToString()+"'";
-                    cmd = new MySqlCommand(cmdtext, conn);
-                    cmd.ExecuteNonQuery();
-
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.ToString());
-                }
-                finally
-                {
-                    if (conn != null)
+                    try
                     {
-                        conn.Close();
+                        conn = new MySqlConnection(cs);
+                        conn.Open();
+
+                        String cmdtext = "UPDATE camper_info SET " +
+                            "`name`='" + camper_name.Text + "', " +
+                            "`preferred_name`='" + camper_preferred_name.Text + "', " +
+                            "`bunk`='" + camper_bunk.Text + "', " +
+                            "`age`='" + camper_age.Text + "', " +
+                            "`nationality`='" + camper_nationality.Text + "', " +
+                            "`restriction`='" + camper_restriction.Text + "', " +
+                            "`medications`='" + camper_medications.Text + "', " +
+                            "`start_date`='" + dateTimePicker_start.Value.ToString() + "', " +
+                            "`leave_date`='" + dateTimePicker_leave.Value.ToString() + "', " +
+                            "`transportation`='" + camper_transportation.Text + "', " +
+                            "`parent1_name`='" + camper_parent1_name.Text + "', " +
+                            "`parent1_phone`='" + camper_parent1_phone.Text + "', " +
+                            "`parent1_email`='" + camper_parent1_email.Text + "', " +
+                            "`parent2_name`='" + camper_parent2_name.Text + "', " +
+                            "`parent2_phone`='" + camper_parent2_phone.Text + "', " +
+                            "`parent2_email`='" + camper_parent2_email.Text + "' " +
+                            "WHERE `name`='" + combo_select_camper.SelectedItem.ToString() + "'";
+
+                        MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
+                        cmd.ExecuteNonQuery();
+                        cmdtext = "UPDATE bunk_camper SET bunk_id=" + camper_bunk.Text + " WHERE camper_name='" + combo_select_camper.SelectedItem.ToString() + "'";
+                        cmd = new MySqlCommand(cmdtext, conn);
+                        cmd.ExecuteNonQuery();
+
                     }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.ToString());
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                        {
+                            conn.Close();
+                        }
+                    }
+                    ClearText(this);
+                    dateTimePicker_start.Value = DateTime.Now;
+                    dateTimePicker_leave.Value = DateTime.Now;
+                    combo_select_camper.SelectedIndex = -1;
+                    combo_select_camper.Items.Clear();
+                    Register_Load(sender, e);
+                    MessageBox.Show("Changes saved successfully!");
+                }
+                else {
+                    MessageBox.Show("Plese make sure text box with '*' are not null!");
                 }
             }
-            ClearText(this);
-            dateTimePicker_start.Value = DateTime.Now;
-            dateTimePicker_leave.Value = DateTime.Now;
-            combo_select_camper.SelectedIndex = -1;
-            combo_select_camper.Items.Clear();
-            Register_Load(sender, e);
-            MessageBox.Show("Changes saved successfully!");
+
         }
     }
 }
