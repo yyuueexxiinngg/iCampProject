@@ -120,6 +120,17 @@ namespace iCampProject
             }
         }
 
+        private void btn_save_click_after(object sender, EventArgs e)
+        {
+            ClearText(this);
+            dateTimePicker_start.Value = DateTime.Now;
+            dateTimePicker_leave.Value = DateTime.Now;
+            combo_select_camper.SelectedIndex = -1;
+            combo_select_camper.Items.Clear();
+            Register_Load(sender, e);
+            MessageBox.Show("Changes successful saved!");
+        }
+
         private void btn_save_Click(object sender, EventArgs e)
         {
 
@@ -173,13 +184,7 @@ namespace iCampProject
                             conn.Close();
                         }
                     }
-                    ClearText(this);
-                    dateTimePicker_start.Value = DateTime.Now;
-                    dateTimePicker_leave.Value = DateTime.Now;
-                    combo_select_camper.SelectedIndex = -1;
-                    combo_select_camper.Items.Clear();
-                    Register_Load(sender, e);
-                    MessageBox.Show("Changes saved successfully!");
+                    btn_save_click_after(sender, e);
                 }
                 else {
                     MessageBox.Show("Plese make sure text box with '*' are not null!");
@@ -232,13 +237,7 @@ namespace iCampProject
                             conn.Close();
                         }
                     }
-                    ClearText(this);
-                    dateTimePicker_start.Value = DateTime.Now;
-                    dateTimePicker_leave.Value = DateTime.Now;
-                    combo_select_camper.SelectedIndex = -1;
-                    combo_select_camper.Items.Clear();
-                    Register_Load(sender, e);
-                    MessageBox.Show("Changes saved successfully!");
+                    btn_save_click_after(sender, e);
                 }
                 else {
                     MessageBox.Show("Plese make sure text box with '*' are not null!");
