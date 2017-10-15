@@ -65,7 +65,7 @@ namespace iCampProject
                 {
                     conn = new MySqlConnection(cs);
                     conn.Open();
-                    String cmdText = "SELECT bunk_camper.id,name FROM bunk_camper LEFT JOIN camper_info ON bunk_camper.camper_id=camper_info.id ORDER BY camper_info.name;";
+                    String cmdText = "SELECT bunk_camper.id,name FROM bunk_camper LEFT JOIN camper_info ON bunk_camper.camper_id=camper_info.id WHERE bunk_id='"+ combo_bunk.SelectedItem.ToString()+"' ORDER BY camper_info.name;";
                     MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                     reader = cmd.ExecuteReader();
                     while (reader.Read())

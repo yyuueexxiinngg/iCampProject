@@ -88,12 +88,12 @@ namespace iCampProject
                     conn = new MySqlConnection(cs);
                     conn.Open();
                     String out_put = "Name,Activity1,Activity2,Activity3,Activity4,Activity5\n";
-                    String cmdText = "SELECT * FROM bunk_camper_selected WHERE bunk_id='" + combo_bunk.SelectedItem.ToString() + "' AND date='" + dateTimePicker1.Value.ToShortDateString() + "'";
+                    String cmdText = "SELECT name,act_no,act,act_id FROM (activities RIGHT JOIN activities_selected ON activities.id=activities_selected.act_id) RIGHT JOIN camper_info  WHERE date='" + dateTimePicker1.Value.ToShortDateString() + "' ORDER BY act;";
                     MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                     reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        out_put += reader.GetString(2)+","+ reader.GetString(5)+ "," + reader.GetString(6)+ "," + reader.GetString(7) + "," + reader.GetString(8)+ "," + reader.GetString(9)+"\n";
+                        out_put += reader.GetString(0)+"\n";
                     }
 
                     FileStream fs = new FileStream("..\\..\\..\\Detail Bunk" + combo_bunk.SelectedItem.ToString() + ".csv", FileMode.Create);
