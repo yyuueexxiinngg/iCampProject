@@ -16,7 +16,7 @@ namespace iCampProject
         string cs = @"server=localhost;userid=root;password='';database=icamp";
         MySqlConnection conn = null;
         MySqlDataReader reader = null;
-
+        TextBox[] notnulltb = { };
         public Register()
         {
             InitializeComponent();
@@ -120,7 +120,7 @@ namespace iCampProject
             }
         }
 
-        private void btn_save_click_after(object sender, EventArgs e)
+        private void btn_save_click_after(object sender,EventArgs e)
         {
             ClearText(this);
             dateTimePicker_start.Value = DateTime.Now;
@@ -131,14 +131,15 @@ namespace iCampProject
             MessageBox.Show("Changes successful saved!");
         }
 
+
         private void btn_save_Click(object sender, EventArgs e)
         {
 
             if (combo_select_camper.SelectedIndex == -1)
             {
-                if (camper_name.Text != "" && camper_bunk.Text != "" && camper_age.Text != "" && camper_nationality.Text != "" && camper_transportation.Text != "" && camper_parent1_name.Text != "" && camper_parent1_phone.Text != "")
+                try
                 {
-                    try
+                    if(camper_name.Text != "" && camper_bunk.Text != "" && camper_age.Text != "" && camper_nationality.Text != "" && camper_transportation.Text != "" && camper_parent1_name.Text != "" && camper_parent1_phone.Text !="")
                     {
                         conn = new MySqlConnection(cs);
                         conn.Open();
@@ -165,37 +166,49 @@ namespace iCampProject
                         MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
 
+                        int id = -1;
+                        cmdtext = "SELECT id FROM camper_info WHERE name='" + camper_name.Text + "'";
+                        cmd = new MySqlCommand(cmdtext, conn);
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt16(0);
+                        }
+                        conn.Close();
+
+                        conn.Open();
                         cmdtext = "INSERT INTO bunk_camper (" +
-                            "`bunk_id`, `camper_name`) " +
-                            "VALUES ('" + camper_bunk.Text + "', '" + camper_name.Text + "')";
+                            "`bunk_id`, `camper_id`) " +
+                            "VALUES ('" + camper_bunk.Text + "', '"+ id +  "')";
                         cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
+                        conn.Close();
 
-
+                        btn_save_click_after(sender, e);
                     }
-                    catch (MySqlException ex)
+                    else
                     {
-                        MessageBox.Show("Error: " + ex.ToString());
+                        MessageBox.Show("Something is null");
                     }
-                    finally
-                    {
-                        if (conn != null)
-                        {
-                            conn.Close();
-                        }
-                    }
-                    btn_save_click_after(sender, e);
-                }
-                else {
-                    MessageBox.Show("Plese make sure text box with '*' are not null!");
-                }
 
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
             }
             else
             {
-                if (camper_name.Text != "" && camper_bunk.Text != "" && camper_age.Text != "" && camper_nationality.Text != "" && camper_transportation.Text != "" && camper_parent1_name.Text != "" && camper_parent1_phone.Text != "")
+                try
                 {
-                    try
+                    if (camper_name.Text != "" && camper_bunk.Text != "" && camper_age.Text != "" && camper_nationality.Text != "" && camper_transportation.Text != "" && camper_parent1_name.Text != "" && camper_parent1_phone.Text != "")
                     {
                         conn = new MySqlConnection(cs);
                         conn.Open();
@@ -221,26 +234,40 @@ namespace iCampProject
 
                         MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
-                        cmdtext = "UPDATE bunk_camper SET bunk_id=" + camper_bunk.Text + " WHERE camper_name='" + combo_select_camper.SelectedItem.ToString() + "'";
+
+
+                        int id = -1;
+                        cmdtext = "SELECT id FROM camper_info WHERE name='" + camper_name.Text + "'";
+                        cmd = new MySqlCommand(cmdtext, conn);
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt16(0);
+                        }
+                        conn.Close();
+
+                        conn.Open();
+                        cmdtext = "UPDATE bunk_camper SET bunk_id=" + camper_bunk.Text + " WHERE camper_id='" + id + "'";
                         cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
-
+                        conn.Close();
+                        btn_save_click_after(sender, e);
                     }
-                    catch (MySqlException ex)
+                    else
                     {
-                        MessageBox.Show("Error: " + ex.ToString());
+                        MessageBox.Show("Somthing is null");
                     }
-                    finally
-                    {
-                        if (conn != null)
-                        {
-                            conn.Close();
-                        }
-                    }
-                    btn_save_click_after(sender, e);
                 }
-                else {
-                    MessageBox.Show("Plese make sure text box with '*' are not null!");
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
                 }
             }
 
