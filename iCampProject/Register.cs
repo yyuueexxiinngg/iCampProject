@@ -166,11 +166,23 @@ namespace iCampProject
                         MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
 
+                        int id = -1;
+                        cmdtext = "SELECT id FROM camper_info WHERE name='" + camper_name.Text + "'";
+                        cmd = new MySqlCommand(cmdtext, conn);
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt16(0);
+                        }
+                        conn.Close();
+
+                        conn.Open();
                         cmdtext = "INSERT INTO bunk_camper (" +
-                            "`bunk_id`, `camper_name`) " +
-                            "VALUES ('" + camper_bunk.Text + "', '" + camper_name.Text + "')";
+                            "`bunk_id`, `camper_id`) " +
+                            "VALUES ('" + camper_bunk.Text + "', '"+ id +  "')";
                         cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
+                        conn.Close();
 
                         btn_save_click_after(sender, e);
                     }
@@ -222,10 +234,23 @@ namespace iCampProject
 
                         MySqlCommand cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
-                        cmdtext = "UPDATE bunk_camper SET bunk_id=" + camper_bunk.Text + " WHERE camper_name='" + combo_select_camper.SelectedItem.ToString() + "'";
+
+
+                        int id = -1;
+                        cmdtext = "SELECT id FROM camper_info WHERE name='" + camper_name.Text + "'";
+                        cmd = new MySqlCommand(cmdtext, conn);
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt16(0);
+                        }
+                        conn.Close();
+
+                        conn.Open();
+                        cmdtext = "UPDATE bunk_camper SET bunk_id=" + camper_bunk.Text + " WHERE camper_id='" + id + "'";
                         cmd = new MySqlCommand(cmdtext, conn);
                         cmd.ExecuteNonQuery();
-
+                        conn.Close();
                         btn_save_click_after(sender, e);
                     }
                     else
