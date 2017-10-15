@@ -60,12 +60,12 @@ namespace iCampProject
                 {
                     conn = new MySqlConnection(cs);
                     conn.Open();
-                    String cmdText = "SELECT * FROM bunk_camper WHERE bunk_id ='" + combo_bunk.SelectedItem.ToString()+"'";
+                    String cmdText = "SELECT name FROM bunk_camper LEFT JOIN camper_info ON bunk_camper.camper_id=camper_info.id ORDER BY camper_info.id;";
                     MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                     reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        combo_name.Items.Add(reader.GetString(3));
+                        combo_name.Items.Add(reader.GetString(0));
                     }
                 }
                 catch (MySqlException ex)

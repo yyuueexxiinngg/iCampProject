@@ -29,6 +29,7 @@ namespace iCampProject
             combo_add.Items.Add("Activity 3");
             combo_add.Items.Add("Activity 4");
             combo_add.Items.Add("Activity 5");
+            dateTimePicker1_ValueChanged(sender, e);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -43,34 +44,34 @@ namespace iCampProject
             {
                 conn = new MySqlConnection(cs);
                 conn.Open();
-                String cmdText = "SELECT * FROM acitvities_date WHERE date='" + date + "'";
+                String cmdText = "SELECT * FROM activities WHERE date='" + date + "' ORDER BY act";
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     if (!reader.IsDBNull(2))
                     {
-                        list_activity1.Items.Add(reader.GetString(2));
-                    }
-
-                    if (!reader.IsDBNull(3))
-                    {
-                        list_activity2.Items.Add(reader.GetString(3));
-                    }
-
-                    if (!reader.IsDBNull(4))
-                    {
-                        list_activity3.Items.Add(reader.GetString(4));
-                    }
-
-                    if (!reader.IsDBNull(5))
-                    {
-                        list_activity4.Items.Add(reader.GetString(5));
-                    }
-
-                    if (!reader.IsDBNull(6))
-                    {
-                        list_activity5.Items.Add(reader.GetString(6));
+                        switch (reader.GetString(2))
+                        {
+                            case "1":
+                                list_activity1.Items.Add(reader.GetString(3));
+                                break;
+                            case "2":
+                                list_activity2.Items.Add(reader.GetString(3));
+                                break;
+                            case "3":
+                                list_activity3.Items.Add(reader.GetString(3));
+                                break;
+                            case "4":
+                                list_activity4.Items.Add(reader.GetString(3));
+                                break;
+                            case "5":
+                                list_activity5.Items.Add(reader.GetString(3));
+                                break;
+                            default:
+                                MessageBox.Show("Index error");
+                                break;
+                        }
                     }
                 }
             }
@@ -96,28 +97,28 @@ namespace iCampProject
             {
                 conn = new MySqlConnection(cs);
                 conn.Open();
-                String cmdText = "SELECT * FROM acitvities_date";
+                String cmdText = "SELECT * FROM activities";
                 switch (num)
                 {
                     case "1":
                         if (list_activity1.SelectedIndex != -1)
-                            cmdText = "DELETE FROM acitvities_date WHERE `date`='" + date + "' AND `activities_1`='" + list_activity1.SelectedItem.ToString() + "'";
+                            cmdText = "DELETE FROM activities WHERE `date`='" + date + "' AND act_no='1' AND `act`='" + list_activity1.SelectedItem.ToString() + "'";
                         break;
                     case "2":
                         if (list_activity2.SelectedIndex != -1)
-                            cmdText = "DELETE FROM acitvities_date WHERE `date`='" + date + "' AND `activities_2`='" + list_activity2.SelectedItem.ToString() + "'";
+                            cmdText = "DELETE FROM activities WHERE `date`='" + date + "' AND act_no='2' AND `act`='" + list_activity2.SelectedItem.ToString() + "'";
                         break;
                     case "3":
                         if (list_activity3.SelectedIndex != -1)
-                            cmdText = "DELETE FROM acitvities_date WHERE `date`='" + date + "' AND `activities_3`='" + list_activity3.SelectedItem.ToString() + "'";
+                            cmdText = "DELETE FROM activities WHERE `date`='" + date + "' AND act_no='3' AND `act`='" + list_activity3.SelectedItem.ToString() + "'";
                         break;
                     case "4":
                         if (list_activity4.SelectedIndex != -1)
-                            cmdText = "DELETE FROM acitvities_date WHERE `date`='" + date + "' AND `activities_4`='" + list_activity4.SelectedItem.ToString() + "'";
+                            cmdText = "DELETE FROM activities WHERE `date`='" + date + "' AND act_no='4' AND `act`='" + list_activity4.SelectedItem.ToString() + "'";
                         break;
                     case "5":
                         if (list_activity5.SelectedIndex != -1)
-                            cmdText = "DELETE FROM acitvities_date WHERE `date`='" + date + "' AND `activities_5`='" + list_activity5.SelectedItem.ToString() + "'";
+                            cmdText = "DELETE FROM activities WHERE `date`='" + date + "' AND act_no='5' AND `act`='" + list_activity5.SelectedItem.ToString() + "'";
                         break;
                 }
 
@@ -170,23 +171,23 @@ namespace iCampProject
                 switch (combo_add.SelectedIndex)
                 {
                     case 0:
-                        cmdText = "INSERT INTO acitvities_date (`date`, `activities_1`) VALUES ('" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '" + textBox_activity.Text + "')";
+                        cmdText = "INSERT INTO activities (`date`, `act_no`, `act`) VALUES ( '" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '1', '" + textBox_activity.Text + "');";
                         add_activity(sender, e, cmdText);
                         break;
                     case 1:
-                        cmdText = "INSERT INTO acitvities_date (`date`, `activities_2`) VALUES ('" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '" + textBox_activity.Text + "')";
+                        cmdText = "INSERT INTO activities (`date`, `act_no`, `act`) VALUES ( '" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '2', '" + textBox_activity.Text + "');";
                         add_activity(sender, e, cmdText);
                         break;
                     case 2:
-                        cmdText = "INSERT INTO acitvities_date (`date`, `activities_3`) VALUES ('" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '" + textBox_activity.Text + "')";
+                        cmdText = "INSERT INTO activities (`date`, `act_no`, `act`) VALUES ( '" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '3', '" + textBox_activity.Text + "');";
                         add_activity(sender, e, cmdText);
                         break;
                     case 3:
-                        cmdText = "INSERT INTO acitvities_date (`date`, `activities_4`) VALUES ('" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '" + textBox_activity.Text + "')";
+                        cmdText = "INSERT INTO activities (`date`, `act_no`, `act`) VALUES ( '" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '4', '" + textBox_activity.Text + "');";
                         add_activity(sender, e, cmdText);
                         break;
                     case 4:
-                        cmdText = "INSERT INTO acitvities_date (`date`, `activities_5`) VALUES ('" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '" + textBox_activity.Text + "')";
+                        cmdText = "INSERT INTO activities (`date`, `act_no`, `act`) VALUES ( '" + dateTimePicker1.Value.ToShortDateString().ToString() + "', '5', '" + textBox_activity.Text + "');";
                         add_activity(sender, e, cmdText);
                         break;
                 }
