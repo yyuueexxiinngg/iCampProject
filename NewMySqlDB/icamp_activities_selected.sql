@@ -35,6 +35,7 @@ CREATE TABLE `activities_selected` (
 
 LOCK TABLES `activities_selected` WRITE;
 /*!40000 ALTER TABLE `activities_selected` DISABLE KEYS */;
+INSERT INTO `activities_selected` VALUES (1,1),(1,5),(1,6),(1,9),(1,11),(2,2),(2,4),(2,8),(2,9),(2,11),(3,2),(3,4),(3,8),(3,10),(3,11),(4,3),(4,5),(4,6),(4,10),(4,11),(5,2),(5,4),(5,8),(5,10),(5,11),(6,1),(6,4),(6,8),(6,10),(6,12),(7,1),(7,4),(7,8),(7,10),(7,12),(8,3),(8,4),(8,8),(8,9),(8,12),(9,2),(9,4),(9,8),(9,10),(9,11);
 /*!40000 ALTER TABLE `activities_selected` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-15 10:41:11
+-- Dump completed on 2017-10-15 11:32:05
