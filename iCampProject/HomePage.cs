@@ -134,34 +134,34 @@ namespace iCampProject
                     String act4 = "";
                     String act5 = "";
                     String camper = "";
-                    String cmdText = "SELECT * FROM acitvities_date WHERE date='" + dateTimePicker1.Value.ToShortDateString() + "'";
+                    String cmdText = "SELECT activities.id,act_no,act,act_id FROM activities LEFT JOIN activities_selected ON activities.id=activities_selected.act_id WHERE date='" + dateTimePicker1.Value.ToShortDateString() + "' ORDER BY act;";
                     MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                     reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        if (!reader.IsDBNull(2))
+                        if (!reader.IsDBNull(0))
                         {
-                            act1 += reader.GetString(2)+",";
-                        }
-
-                        if (!reader.IsDBNull(3))
-                        {
-                            act2 += reader.GetString(3) + ",";
-                        }
-
-                        if (!reader.IsDBNull(4))
-                        {
-                            act3 += reader.GetString(4) + ",";
-                        }
-
-                        if (!reader.IsDBNull(5))
-                        {
-                            act4 += reader.GetString(5) + ",";
-                        }
-
-                        if (!reader.IsDBNull(6))
-                        {
-                            act5 += reader.GetString(6) + ",";
+                            switch (reader.GetString(1))
+                            {
+                                case "1":
+                                    act1 += reader.GetString(2);
+                                    break;
+                                case "2":
+                                    act2 += reader.GetString(2);
+                                    break;
+                                case "3":
+                                    act3 += reader.GetString(2);
+                                    break;
+                                case "4":
+                                    act4 += reader.GetString(2);
+                                    break;
+                                case "5":
+                                    act5 += reader.GetString(2);
+                                    break;
+                                default:
+                                    MessageBox.Show("Index error");
+                                    break;
+                            }
                         }
                     }
                     conn.Close();

@@ -112,6 +112,7 @@
             this.list_activity5.Name = "list_activity5";
             this.list_activity5.Size = new System.Drawing.Size(180, 184);
             this.list_activity5.TabIndex = 9;
+            this.list_activity5.SelectedIndexChanged += new System.EventHandler(this.list_activity5_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -129,6 +130,7 @@
             this.list_activity4.Name = "list_activity4";
             this.list_activity4.Size = new System.Drawing.Size(180, 184);
             this.list_activity4.TabIndex = 7;
+            this.list_activity4.SelectedIndexChanged += new System.EventHandler(this.list_activity4_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -146,6 +148,7 @@
             this.list_activity3.Name = "list_activity3";
             this.list_activity3.Size = new System.Drawing.Size(180, 184);
             this.list_activity3.TabIndex = 5;
+            this.list_activity3.SelectedIndexChanged += new System.EventHandler(this.list_activity3_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -163,6 +166,7 @@
             this.list_activity2.Name = "list_activity2";
             this.list_activity2.Size = new System.Drawing.Size(180, 184);
             this.list_activity2.TabIndex = 3;
+            this.list_activity2.SelectedIndexChanged += new System.EventHandler(this.list_activity2_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -180,6 +184,7 @@
             this.list_activity1.Name = "list_activity1";
             this.list_activity1.Size = new System.Drawing.Size(180, 184);
             this.list_activity1.TabIndex = 1;
+            this.list_activity1.SelectedIndexChanged += new System.EventHandler(this.list_activity1_SelectedIndexChanged);
             // 
             // label4
             // 
