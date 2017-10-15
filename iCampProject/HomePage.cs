@@ -144,19 +144,19 @@ namespace iCampProject
                             switch (reader.GetString(1))
                             {
                                 case "1":
-                                    act1 += reader.GetString(2);
+                                    act1 += reader.GetString(2) + ",";
                                     break;
                                 case "2":
-                                    act2 += reader.GetString(2);
+                                    act2 += reader.GetString(2) + ",";
                                     break;
                                 case "3":
-                                    act3 += reader.GetString(2);
+                                    act3 += reader.GetString(2) + ",";
                                     break;
                                 case "4":
-                                    act4 += reader.GetString(2);
+                                    act4 += reader.GetString(2) + ",";
                                     break;
                                 case "5":
-                                    act5 += reader.GetString(2);
+                                    act5 += reader.GetString(2) + ",";
                                     break;
                                 default:
                                     MessageBox.Show("Index error");
@@ -166,7 +166,7 @@ namespace iCampProject
                     }
                     conn.Close();
                     out_put += act1 + "\n";
-                    cmdText = "SELECT * FROM bunk_camper WHERE bunk_id='" + combo_bunk.SelectedItem.ToString() + "'";
+                    cmdText = "SELECT name,bunk_camper.bunk_id FROM bunk_camper LEFT JOIN camper_info ON camper_info.id=bunk_camper.camper_id WHERE bunk_id='"+ combo_bunk.SelectedItem.ToString()+"' ORDER BY bunk_id ;";
 
                     //conn = new MySqlConnection(cs);
                     conn.Open();
@@ -174,7 +174,7 @@ namespace iCampProject
                     reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                            camper += reader.GetString(3) + "\n";
+                            camper += reader.GetString(0) + "\n";
                     }
                     //conn.Close();
 
