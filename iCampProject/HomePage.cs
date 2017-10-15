@@ -88,12 +88,26 @@ namespace iCampProject
                     conn = new MySqlConnection(cs);
                     conn.Open();
                     String out_put = "Name,Activity1,Activity2,Activity3,Activity4,Activity5\n";
-                    String cmdText = "SELECT name,act_no,act,act_id FROM (activities RIGHT JOIN activities_selected ON activities.id=activities_selected.act_id) RIGHT JOIN camper_info  WHERE date='" + dateTimePicker1.Value.ToShortDateString() + "' ORDER BY act;";
+                    String cmdText = "SELECT DISTINCT name,act_no,act,act_id FROM activities RIGHT JOIN activities_selected ON activities.id=activities_selected.act_id RIGHT JOIN bunk_camper ON activities_selected.id=bunk_camper.id RIGHT JOIN camper_info ON bunk_camper.camper_id=camper_info.id WHERE bunk_id='"+combo_bunk.SelectedItem.ToString()+"' ORDER BY bunk_id,name,act_no;";
                     MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                     reader = cmd.ExecuteReader();
+                    int count = 0;
                     while (reader.Read())
                     {
-                        out_put += reader.GetString(0)+"\n";
+                        count++;
+                        if (count == 1)
+                        {
+                            out_put += reader.GetString(0) + "," + reader.GetString(2) + ",";
+                        }
+                        else if (count <= 4)
+                        {
+                            out_put += reader.GetString(2) + ",";
+                        }
+                        else
+                        {
+                            out_put += reader.GetString(2) + "\n";
+                            count = 0;
+                        }
                     }
 
                     FileStream fs = new FileStream("..\\..\\..\\Detail Bunk" + combo_bunk.SelectedItem.ToString() + ".csv", FileMode.Create);
